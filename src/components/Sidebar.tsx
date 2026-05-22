@@ -164,7 +164,7 @@ export default function Sidebar({ currentTab, onTabChange, theme, onChangeTheme,
               <div className="flex items-center gap-2.5 truncate">
                 <Monitor size={15} className="text-gray-400 dark:text-neutral-500 shrink-0" />
                 <span className="truncate">
-                  System <span className="text-gray-400 dark:text-neutral-500 text-[10px] font-normal">({isSystemDark ? 'Dark' : 'Light'})</span>
+                  System <span className="text-gray-400 dark:text-neutral-500 text-[10px] font-normal">({isSystemDark ? ' Dark ' : ' Light '})</span>
                 </span>
               </div>
               {theme === 'system' && (

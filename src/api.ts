@@ -192,7 +192,7 @@ router.post('/refine', async (req, res) => {
 
     const responseStream = await ai.models.generateContentStream({
        model: 'gemini-3.5-flash',
-       contents: \`다음은 기존 보도자료의 일부입니다:\\n\\n\${targetBlock}\\n\\n이 부분을 다음 요청에 맞게 수정해 주세요: \${instruction}\\n\\n*수정된 텍스트만 마크다운으로 출력하세요. 다른 말은 덧붙이지 마세요.*\`,
+       contents: `다음은 기존 보도자료의 일부입니다:\n\n${targetBlock}\n\n이 부분을 다음 요청에 맞게 수정해 주세요: ${instruction}\n\n*수정된 텍스트만 마크다운으로 출력하세요. 다른 말은 덧붙이지 마세요.*`,
     });
     
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
