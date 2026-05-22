@@ -52,14 +52,6 @@ export default function Sidebar({ currentTab, onTabChange, theme, onChangeTheme,
         className="py-6 border-b border-gray-200 dark:border-[#1E1E1E] flex flex-col items-center justify-center gap-1 cursor-pointer transition-opacity hover:opacity-80"
         onClick={onLogoClick}
       >
-        <div className="w-10 h-10 rounded-lg overflow-hidden border border-gray-200 dark:border-white/10 shadow-md">
-          <img 
-            src="/src/assets/images/ipartners_pr_ai_logo_1779364022084.png" 
-            alt="Logo" 
-            className="w-full h-full object-cover" 
-            referrerPolicy="no-referrer"
-          />
-        </div>
         <span className="text-[11px] font-black tracking-tight text-gray-900 dark:text-neutral-200 mt-1 uppercase block leading-tight">
           IPARTNERS<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C3AED] to-[#3B82F6]">NX Agent</span>

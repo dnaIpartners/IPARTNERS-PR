@@ -48,14 +48,6 @@ export default function MainLanding({ onLogin }: MainLandingProps) {
       {/* Header Bar */}
       <header className="absolute top-0 left-0 right-0 h-20 px-8 flex items-center justify-between z-10 w-full max-w-7xl mx-auto">
         <div className="flex items-center gap-2.5">
-          <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-[#FF4A22]/20 border border-white/10 flex-shrink-0">
-            <img 
-              src="/src/assets/images/ipartners_pr_ai_logo_1779364022084.png" 
-              alt="Logo" 
-              className="w-full h-full object-cover" 
-              referrerPolicy="no-referrer"
-            />
-          </div>
           <span className="text-sm font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400 font-sans uppercase">
             IPARTNERS PR AI
           </span>
