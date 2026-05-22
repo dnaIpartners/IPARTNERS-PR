@@ -14,6 +14,9 @@ router.post('/generate', async (req, res) => {
     const apiKey = rawApiKey?.replace(/^["']|["']$/g, '').trim();
     console.log(`[API /generate] Initializing GoogleGenAI. Key length: ${apiKey ? apiKey.length : 0}`);
     
+    if (!apiKey) {
+      return res.status(400).json({ error: 'Gemini API 키가 설정되지 않았습니다. 빗자루 모양의 설정(Settings) 메뉴에서 API 키를 입력해주세요.' });
+    }
     const ai = new GoogleGenAI({ apiKey });
     const { keywords, type, embargo, companyName, companyLink, contact, tone, length, generateImage, imageStyle } = req.body;
 
@@ -123,7 +126,11 @@ ${generateImage ? `- 이미지 생성 지시: 다음 스타일로 보도자료�
     res.end();
   } catch (error: any) {
     console.error('Generation Error:', error);
-    res.status(500).json({ error: error.message });
+    let errorMessage = error?.message || String(error);
+    if (errorMessage.includes('API_KEY_INVALID') || errorMessage.includes('API Key not found') || errorMessage.includes('API key not valid')) {
+      errorMessage = 'Gemini API 키가 유효하지 않거나 설정되지 않았습니다. 빗자루 모양의 설정(Settings) 메뉴에서 올바른 API 키를 입력해주세요.';
+    }
+    res.status(500).json({ error: errorMessage });
   }
 });
 
@@ -132,6 +139,9 @@ router.post('/generate-copy', async (req, res) => {
     const rawApiKey = process.env.GEMINI_API_KEY;
     const apiKey = rawApiKey?.replace(/^["']|["']$/g, '').trim();
     
+    if (!apiKey) {
+      return res.status(400).json({ error: 'Gemini API 키가 설정되지 않았습니다. 빗자루 모양의 설정(Settings) 메뉴에서 API 키를 입력해주세요.' });
+    }
     const ai = new GoogleGenAI({ apiKey });
     const { keywords, platform, tone, count, targetAudience, length } = req.body;
 
@@ -178,7 +188,11 @@ router.post('/generate-copy', async (req, res) => {
     res.end();
   } catch (error: any) {
     console.error('Copywriting Generation Error:', error);
-    res.status(500).json({ error: error.message });
+    let errorMessage = error?.message || String(error);
+    if (errorMessage.includes('API_KEY_INVALID') || errorMessage.includes('API Key not found') || errorMessage.includes('API key not valid')) {
+      errorMessage = 'Gemini API 키가 유효하지 않거나 설정되지 않았습니다. 빗자루 모양의 설정(Settings) 메뉴에서 올바른 API 키를 입력해주세요.';
+    }
+    res.status(500).json({ error: errorMessage });
   }
 });
 
@@ -187,6 +201,9 @@ router.post('/refine', async (req, res) => {
     const rawApiKey = process.env.GEMINI_API_KEY;
     const apiKey = rawApiKey?.replace(/^["']|["']$/g, '').trim();
     
+    if (!apiKey) {
+      return res.status(400).json({ error: 'Gemini API 키가 설정되지 않았습니다. 빗자루 모양의 설정(Settings) 메뉴에서 API 키를 입력해주세요.' });
+    }
     const ai = new GoogleGenAI({ apiKey });
     const { targetBlock, instruction } = req.body;
 
@@ -206,7 +223,11 @@ router.post('/refine', async (req, res) => {
     res.end();
   } catch (error: any) {
     console.error('Refinement Error:', error);
-    res.status(500).json({ error: error.message });
+    let errorMessage = error?.message || String(error);
+    if (errorMessage.includes('API_KEY_INVALID') || errorMessage.includes('API Key not found') || errorMessage.includes('API key not valid')) {
+      errorMessage = 'Gemini API 키가 유효하지 않거나 설정되지 않았습니다. 빗자루 모양의 설정(Settings) 메뉴에서 올바른 API 키를 입력해주세요.';
+    }
+    res.status(500).json({ error: errorMessage });
   }
 });
 

@@ -64,7 +64,15 @@ export default function PreviewEditor({ content, isGenerating, setContent, curre
         })
       });
 
-      if (!response.ok || !response.body) throw new Error('Refine Failed');
+      if (!response.ok || !response.body) {
+        const errText = await response.text();
+        let errMsg = errText;
+        try {
+          const json = JSON.parse(errText);
+          if (json.error) errMsg = json.error;
+        } catch (e) {}
+        throw new Error(errMsg || 'API Request Failed');
+      }
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();

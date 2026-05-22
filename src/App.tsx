@@ -225,7 +225,12 @@ export default function App() {
 
       if (!response.ok || !response.body) {
         const errText = await response.text();
-        throw new Error(errText || 'API Request Failed');
+        let errMsg = errText;
+        try {
+          const json = JSON.parse(errText);
+          if (json.error) errMsg = json.error;
+        } catch (e) {}
+        throw new Error(errMsg || 'API Request Failed');
       }
 
       const reader = response.body.getReader();
@@ -265,7 +270,12 @@ export default function App() {
 
       if (!response.ok || !response.body) {
         const errText = await response.text();
-        throw new Error(errText || 'API Request Failed');
+        let errMsg = errText;
+        try {
+          const json = JSON.parse(errText);
+          if (json.error) errMsg = json.error;
+        } catch (e) {}
+        throw new Error(errMsg || 'API Request Failed');
       }
 
       const reader = response.body.getReader();
